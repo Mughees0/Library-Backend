@@ -1,18 +1,22 @@
 package com.rest_api.fs14backend.serviceImpl;
 
 
+import com.rest_api.fs14backend.entity.*;
 import com.rest_api.fs14backend.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.rest_api.fs14backend.entity.BookCopy;
 import com.rest_api.fs14backend.repository.BookCopyRepository;
 import com.rest_api.fs14backend.service.BookCopyService;
-import com.rest_api.fs14backend.dao.BookCopyDto;
-import com.rest_api.fs14backend.entity.Book;
+import com.rest_api.fs14backend.dto.BookCopyDto;
 import com.rest_api.fs14backend.mapper.BookCopyMapper;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Service
@@ -38,7 +42,7 @@ public class BookCopyServiceImpl implements BookCopyService {
     public BookCopy createOne(BookCopyDto bookCopyDto){
         UUID bookId = bookCopyDto.getBookId();
         Book book = bookService.findOne(bookId);
-        BookCopy bookCopy = bookCopyMapper.toBookCopy(book);
+        BookCopy bookCopy = bookCopyMapper.toBookCopy(book, bookCopyDto.status);
         return bookCopyRepository.save(bookCopy);
     }
 
@@ -47,4 +51,64 @@ public class BookCopyServiceImpl implements BookCopyService {
         bookCopyRepository.deleteById(id);
     }
 
-}
+    @Override
+        public List<BookCopy> findAllByBookId(UUID id) {
+            List<BookCopy> filteredBookCopies = new ArrayList<>();
+
+            // Query the database to get all book copies
+            List<BookCopy> allBookCopies = bookCopyRepository.findAll();
+
+            // Iterate over the book copies and filter based on the bookId
+            for (BookCopy bookCopy : allBookCopies) {
+                if (bookCopy.getBook().getId().equals(id) ) {
+                    filteredBookCopies.add(bookCopy);
+                }
+            }
+            return filteredBookCopies;
+        }
+
+    @Override
+    public List<BookCopy> findAvailableByBookId(UUID id){
+        List<BookCopy> filteredBookCopies = new ArrayList<>();
+
+        // Query the database to get all book copies
+        List<BookCopy> allBookCopies = bookCopyRepository.findAll();
+
+        // Iterate over the book copies and filter based on the bookId
+        for (BookCopy bookCopy : allBookCopies) {
+            if (bookCopy.getId().equals(id) && bookCopy.getStatus()) {
+                filteredBookCopies.add(bookCopy);
+            }
+        }
+        return filteredBookCopies;
+    }
+    @Override
+    public BookCopy updateOne(UUID id,BookCopyDto bookCopyDto){
+        BookCopy foundBookCopy =  bookCopyRepository.findById(id).orElse(null);
+        Book foundBook = bookService.findOne(bookCopyDto.bookId);
+
+        if(foundBookCopy != null){
+            foundBookCopy.setBook(foundBook);
+            foundBookCopy.setStatus(bookCopyDto.status);
+            return bookCopyRepository.save(foundBookCopy);
+        }
+        return null;
+
+    }
+    public int countAllByBookId(@PathVariable UUID id){
+        List<BookCopy> filteredBookCopies = new ArrayList<>();
+
+        // Query the database to get all book copies
+        List<BookCopy> allBookCopies = bookCopyRepository.findAll();
+
+        // Iterate over the book copies and filter based on the bookId
+        for (BookCopy bookCopy : allBookCopies) {
+            if (bookCopy.getBook().getId().equals(id) ) {
+                filteredBookCopies.add(bookCopy);
+            }
+        }
+        return filteredBookCopies.size();
+
+    }
+    }
+

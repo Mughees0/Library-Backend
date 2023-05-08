@@ -1,6 +1,6 @@
 package com.rest_api.fs14backend.serviceImpl;
 
-import com.rest_api.fs14backend.dao.AuthRequest;
+import com.rest_api.fs14backend.dto.AuthRequest;
 import com.rest_api.fs14backend.entity.User;
 import com.rest_api.fs14backend.repository.UserRepository;
 import com.rest_api.fs14backend.service.UserService;
@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service

@@ -1,4 +1,4 @@
-package com.rest_api.fs14backend.dao;
+package com.rest_api.fs14backend.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +8,7 @@ import java.util.UUID;
 
 @NoArgsConstructor
 @Data
-public class BorrowDao {
+public class BorrowDto {
         private UUID bookId;
         private UUID userId;
-        private Date borrowDate;
-        private Date returnDate;
 }

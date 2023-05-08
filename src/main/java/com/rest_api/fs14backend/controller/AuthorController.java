@@ -41,9 +41,8 @@ public class AuthorController {
     }
     @PutMapping("/update/{id}")
     // http://localhost:8080/api/author/63afcc65-aee6-40be-8331-7e890800d267
-    public ResponseEntity<Author> updateAuthor(@PathVariable("id") UUID authorId, @RequestBody Author author){
-        author.setId(authorId);
-        Author updateAuthor = authorService.updateAuthor(author);
+    public ResponseEntity<Author> updateAuthor(@PathVariable UUID id, @RequestBody Author author){
+        Author updateAuthor = authorService.updateAuthor(id,author);
         return new ResponseEntity<>(updateAuthor, HttpStatus.OK);
     }
 

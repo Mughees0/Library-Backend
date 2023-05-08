@@ -32,8 +32,8 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author updateAuthor(Author author) {
-        Author existingAuthor = authorRepository.findById(author.getId()).orElse(null);
+    public Author updateAuthor(UUID id,Author author) {
+        Author existingAuthor = authorRepository.findById(id).orElse(null);
         if(existingAuthor != null) {
             existingAuthor.setEmail(author.getEmail());
             existingAuthor.setAuthorName(author.getAuthorName());

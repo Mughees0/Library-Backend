@@ -1,4 +1,4 @@
-package com.rest_api.fs14backend.dao;
+package com.rest_api.fs14backend.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,4 +9,5 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BookCopyDto {
     public UUID bookId;
+    public boolean status;
 }

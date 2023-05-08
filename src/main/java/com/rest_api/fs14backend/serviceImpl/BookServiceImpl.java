@@ -1,6 +1,6 @@
 package com.rest_api.fs14backend.serviceImpl;
 
-import com.rest_api.fs14backend.dao.BookDao;
+import com.rest_api.fs14backend.dto.BookDto;
 import com.rest_api.fs14backend.entity.Author;
 import com.rest_api.fs14backend.entity.Category;
 import com.rest_api.fs14backend.mapper.BookMapper;
@@ -40,7 +40,7 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(id).orElse(null);
     }
     @Override
-    public Book createOne(BookDao bookDao) {
+    public Book createOne(BookDto bookDao) {
         UUID authorId = bookDao.getAuthorId();
         Author foundAuthor = authorService.getUserById(authorId);
         UUID categoryId = bookDao.getCategoryId();
@@ -50,7 +50,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book updateOne(UUID id,BookDao bookDao){
+    public Book updateOne(UUID id, BookDto bookDao){
        Book foundBook =  bookRepository.findById(id).orElse(null);
         UUID authorId = bookDao.getAuthorId();
         Author foundAuthor = authorService.getUserById(authorId);

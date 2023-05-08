@@ -1,6 +1,5 @@
-package com.rest_api.fs14backend.dao;
+package com.rest_api.fs14backend.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +8,7 @@ import java.util.UUID;
 
 @NoArgsConstructor
 @Data
-public class BookDao {
+public class BookDto {
         private UUID categoryId;
         private UUID authorId;
         private String title;
