@@ -1,9 +1,7 @@
 package com.rest_api.fs14backend.serviceImpl;
 
-import com.rest_api.fs14backend.entity.Book;
 import com.rest_api.fs14backend.entity.Borrower;
 import com.rest_api.fs14backend.entity.Category;
-import com.rest_api.fs14backend.entity.User;
 import com.rest_api.fs14backend.repository.CategoryRepository;
 import com.rest_api.fs14backend.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

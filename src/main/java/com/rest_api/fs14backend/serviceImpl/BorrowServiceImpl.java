@@ -52,6 +52,7 @@ public class BorrowServiceImpl implements BorrowService {
     @Override
     public Borrower updateOne(UUID id,BorrowDao borrowDao){
         Borrower foundBorrower =  borrowerRepository.findById(id).orElse(null);
+
         if(foundBorrower != null){
             foundBorrower.setBook(bookService.findOne(borrowDao.getBookId()));
             foundBorrower.setUser(userService.getUserById(borrowDao.getUserId()));

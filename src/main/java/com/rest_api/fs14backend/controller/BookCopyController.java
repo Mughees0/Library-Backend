@@ -14,7 +14,7 @@ import com.rest_api.fs14backend.service.BookService;
 
 
 @RestController
-@RequestMapping("/api/v1/bookCopy")
+@RequestMapping("/api/v1/bookcopy")
 public class BookCopyController {
     @Autowired
     BookCopyService bookCopyService;

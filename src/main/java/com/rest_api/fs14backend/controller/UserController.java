@@ -11,12 +11,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/users")
+@RequestMapping("api/v1/user")
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public List<User> findAll(){
         return userService.findAll();
     }
@@ -30,7 +30,7 @@ public class UserController {
     public User signup(@RequestBody User user) {
         return userService.signup(user);
     }
-    @GetMapping("/{id}/")
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable UUID id){
         return userService.getUserById(id);
     }

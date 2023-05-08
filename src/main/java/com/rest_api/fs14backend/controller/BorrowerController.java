@@ -30,7 +30,7 @@ public class BorrowerController {
     public Borrower addBorrower(@RequestBody BorrowDao borrowDao) {
        return  borrowerService.createOne(borrowDao);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public Borrower updateBorrower(@PathVariable UUID id,@RequestBody BorrowDao borrowDao) {
         return  borrowerService.updateOne(id,borrowDao);
     }
