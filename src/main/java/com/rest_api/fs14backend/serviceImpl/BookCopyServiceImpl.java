@@ -76,7 +76,7 @@ public class BookCopyServiceImpl implements BookCopyService {
 
         // Iterate over the book copies and filter based on the bookId
         for (BookCopy bookCopy : allBookCopies) {
-            if (bookCopy.getId().equals(id) && bookCopy.getStatus()) {
+            if (bookCopy.getBook().getId().equals(id) && bookCopy.getStatus()) {
                 filteredBookCopies.add(bookCopy);
             }
         }
@@ -95,7 +95,7 @@ public class BookCopyServiceImpl implements BookCopyService {
         return null;
 
     }
-    public int countAllByBookId(@PathVariable UUID id){
+    public int countAllByBookId(UUID id){
         List<BookCopy> filteredBookCopies = new ArrayList<>();
 
         // Query the database to get all book copies
@@ -108,7 +108,21 @@ public class BookCopyServiceImpl implements BookCopyService {
             }
         }
         return filteredBookCopies.size();
+    }
+    @Override
+    public int countAvailableByBookId(UUID id){
+        List<BookCopy> filteredBookCopies = new ArrayList<>();
 
+        // Query the database to get all book copies
+        List<BookCopy> allBookCopies = bookCopyRepository.findAll();
+
+        // Iterate over the book copies and filter based on the bookId
+        for (BookCopy bookCopy : allBookCopies) {
+            if (bookCopy.getBook().getId().equals(id) && bookCopy.getStatus()) {
+                filteredBookCopies.add(bookCopy);
+            }
+        }
+        return filteredBookCopies.size();
     }
     }
 

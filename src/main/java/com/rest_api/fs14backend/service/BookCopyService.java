@@ -23,5 +23,6 @@ public interface BookCopyService {
     public List<BookCopy> findAvailableByBookId(UUID id);
     public BookCopy updateOne( UUID id, BookCopyDto bookCopyDto);
     public int countAllByBookId( UUID id);
+    public int countAvailableByBookId(UUID id);
 
 }

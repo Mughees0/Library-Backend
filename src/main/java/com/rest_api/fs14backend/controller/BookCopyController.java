@@ -49,4 +49,8 @@ public class BookCopyController {
     public List<BookCopy> findAvailableByBookId(@PathVariable UUID id){
         return bookCopyService.findAvailableByBookId(id);
     }
+    @GetMapping("/countAvailable/{id}")
+    public int countAvailableByBookId(@PathVariable UUID id){
+        return bookCopyService.countAvailableByBookId(id);
+    }
 }
