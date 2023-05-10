@@ -24,8 +24,16 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    public User(String username, String password){
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    enum Role {
+        USER,
+        ADMIN
+    }
+
+    public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 }

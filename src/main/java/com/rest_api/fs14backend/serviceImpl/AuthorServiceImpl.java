@@ -15,9 +15,8 @@ public class AuthorServiceImpl implements AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
     @Override
-    public UUID createAuthor(Author author) {
-        UUID id = authorRepository.save(author).getId();
-        return id;
+    public Author createAuthor(Author author) {
+       return authorRepository.save(author);
     }
 
     @Override

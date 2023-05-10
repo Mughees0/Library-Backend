@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AuthorService {
-    UUID createAuthor(Author author);
+    Author createAuthor(Author author);
     Author getUserById(UUID authorId);
     List<Author> getAllAuthors();
     Author updateAuthor(UUID id, Author author);

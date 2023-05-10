@@ -16,16 +16,8 @@ public class AuthorController {
     @Autowired
     private AuthorService authorService;
     @PostMapping("/add")
-    public ResponseEntity<String> createAuthor(@RequestBody Author author) {
-        System.out.println(author);
-        ResponseEntity<String> res = null;
-        try{
-            UUID id = authorService.createAuthor(author);
-            res = new ResponseEntity<String>("new Author created: " + author.getAuthorName() , HttpStatus.CREATED);
-        } catch (Exception e) {
-            res = new ResponseEntity<String>( "Unable to save", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-                return res;
+    public Author createAuthor(@RequestBody Author author) {
+      return authorService.createAuthor(author);
     }
 
     @GetMapping("/all")
@@ -34,22 +26,17 @@ public class AuthorController {
         return new ResponseEntity<>(author, HttpStatus.OK);
     }
     @GetMapping("{id}")
-    // http://localhost:8080/api/author/63afcc65-aee6-40be-8331-7e890800d267
-    public ResponseEntity<Author> getAuthorById(@PathVariable("id") UUID authorId) {
+    public void getAuthorById(@PathVariable UUID authorId) {
         Author author = authorService.getUserById(authorId);
-        return new ResponseEntity<>(author, HttpStatus.OK);
     }
     @PutMapping("/update/{id}")
-    // http://localhost:8080/api/author/63afcc65-aee6-40be-8331-7e890800d267
-    public ResponseEntity<Author> updateAuthor(@PathVariable UUID id, @RequestBody Author author){
+    public void updateAuthor(@PathVariable UUID id, @RequestBody Author author){
         Author updateAuthor = authorService.updateAuthor(id,author);
-        return new ResponseEntity<>(updateAuthor, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public  ResponseEntity<String>  deleteAuthor(@PathVariable("id") UUID authorId) {
+    public void deleteAuthor(@PathVariable UUID authorId) {
         authorService.deleteAuthor(authorId);
-        return new ResponseEntity<>("Author successfully deleted!", HttpStatus.OK);
     }
 
 }
