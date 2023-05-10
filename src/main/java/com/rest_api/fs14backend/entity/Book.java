@@ -17,9 +17,11 @@ public class Book {
     @GeneratedValue
     @UuidGenerator
     private UUID id;
-    @Column(nullable = false,columnDefinition = "varchar(50)")
+    @Column(nullable = false)
     private String title;
-    @Column(nullable = false,columnDefinition = "varchar(50)")
+    @Column(nullable = false)
+    private String description;
+    @Column
     private String isbn;
     @OneToOne
     private Author author;
@@ -32,8 +34,9 @@ public class Book {
     @Column(nullable = false)
     private String cover;
 
-    public Book(String title, String isbn, Author author, Category category, Date publishedDate, String publisher, String cover) {
+    public Book(String title, String description, String isbn, Author author, Category category, Date publishedDate, String publisher, String cover) {
         this.title = title;
+        this.description = description;
         this.isbn = isbn;
         this.author = author;
         this.category = category;
@@ -42,3 +45,4 @@ public class Book {
         this.cover = cover;
     }
 }
+

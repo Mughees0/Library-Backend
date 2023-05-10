@@ -12,6 +12,7 @@ public class BookDto {
         private UUID categoryId;
         private UUID authorId;
         private String title;
+        private String description;
         private String isbn;
         private Date publishedDate;
         private String publisher;
