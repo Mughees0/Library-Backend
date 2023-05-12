@@ -89,6 +89,17 @@ public class BorrowServiceImpl implements BorrowService {
         }
     }
     @Override
+    public List<Borrower> findAllBorrowedBooks( UUID userId){
+        List<Borrower> borrowedBooks = borrowerRepository.findAll();
+        List<Borrower> foundBooks = new ArrayList<Borrower>();
+        for (Borrower book : borrowedBooks) {
+            if (book.getUser().getId().equals(userId) && !book.getBookCopy().getStatus()) {
+                foundBooks.add(book);
+            }
+        }
+        return foundBooks;
+    }
+    @Override
     public Borrower updateOne(UUID id, Borrower borrower){
         Borrower foundBorrower =  borrowerRepository.findById(id).orElse(null);
 

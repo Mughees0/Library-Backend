@@ -39,16 +39,30 @@ public class BookCopyServiceImpl implements BookCopyService {
     }
 
     @Override
-    public BookCopy createOne(BookCopyDto bookCopyDto){
+    public List<BookCopy> addCopies(BookCopyDto bookCopyDto){
         UUID bookId = bookCopyDto.getBookId();
         Book book = bookService.findOne(bookId);
-        BookCopy bookCopy = bookCopyMapper.toBookCopy(book, bookCopyDto.status);
-        return bookCopyRepository.save(bookCopy);
+        List<BookCopy> bookCopy = new ArrayList<>();
+        for (int i=0; i< bookCopyDto.quantity;i++){
+           BookCopy mappedCopy= bookCopyMapper.toBookCopy(book, bookCopyDto.status);
+            bookCopy.add(mappedCopy);
+        }
+        return bookCopyRepository.saveAll(bookCopy);
     }
 
     @Override
     public void deleteOne(UUID id){
-        bookCopyRepository.deleteById(id);
+
+        // Query the database to get all book copies
+        List<BookCopy> allBookCopies = bookCopyRepository.findAll();
+
+        // Iterate over the book copies and filter based on the bookId
+        for (BookCopy bookCopy : allBookCopies) {
+         if (bookCopy.getBook().getId().equals(id)){
+                bookCopyRepository.deleteById(bookCopy.getId());
+                break;
+            }
+        }
     }
 
     @Override

@@ -1,10 +1,8 @@
 package com.rest_api.fs14backend.controller;
 
-import com.rest_api.fs14backend.entity.Borrower;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,8 +24,8 @@ public class BookCopyController {
         return bookCopyService.getAll();
     }
     @PostMapping("/add")
-    public BookCopy createOne(@RequestBody BookCopyDto bookCopyDto){
-        return bookCopyService.createOne(bookCopyDto);
+    public List<BookCopy> addCopies(@RequestBody BookCopyDto bookCopyDto){
+        return bookCopyService.addCopies(bookCopyDto);
     }
     @DeleteMapping("/delete/{id}")
     public void deleteOne(@PathVariable UUID id){

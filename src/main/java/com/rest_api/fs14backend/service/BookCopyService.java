@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface BookCopyService {
     public List<BookCopy> getAll();
     public BookCopy findOne(UUID id);
-    public BookCopy createOne(BookCopyDto bookCopyDto);
+    public List<BookCopy> addCopies(BookCopyDto bookCopyDto);
     public void deleteOne(UUID id);
     public List<BookCopy> findAllByBookId(UUID id);
     public List<BookCopy> findAvailableByBookId(UUID id);

@@ -48,5 +48,10 @@ public class BorrowerController {
     public void returnOne(@RequestBody ReturnDto returnDto){
         borrowerService.returnOne(returnDto.getUserId(),returnDto.getBookCopyId());
     }
+    @GetMapping("/all/{userId}")
+    public List<Borrower> findAllBorrowedBooks(@PathVariable UUID userId){
+        return borrowerService.findAllBorrowedBooks(userId);
+    }
+
 
 }
