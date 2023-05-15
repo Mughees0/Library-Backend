@@ -30,8 +30,8 @@ public class AuthorController {
         Author author = authorService.getUserById(authorId);
     }
     @PutMapping("/update/{id}")
-    public void updateAuthor(@PathVariable UUID id, @RequestBody Author author){
-        Author updateAuthor = authorService.updateAuthor(id,author);
+    public Author updateAuthor(@PathVariable UUID id, @RequestBody Author author){
+        return authorService.updateAuthor(id,author);
     }
 
     @DeleteMapping("/delete/{id}")

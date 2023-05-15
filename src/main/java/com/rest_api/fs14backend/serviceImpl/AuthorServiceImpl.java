@@ -37,7 +37,7 @@ public class AuthorServiceImpl implements AuthorService {
             existingAuthor.setEmail(author.getEmail());
             existingAuthor.setAuthorName(author.getAuthorName());
             existingAuthor.setPhone(author.getPhone());
-            return existingAuthor;
+            return authorRepository.save(existingAuthor);
         }
         return null;
     }
