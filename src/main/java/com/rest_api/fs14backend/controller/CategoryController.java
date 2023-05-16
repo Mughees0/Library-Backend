@@ -24,7 +24,7 @@ public class CategoryController {
         return categoryService.findAll();
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public Category updateOne(@PathVariable UUID id ,@RequestBody Category updatedCategory) {
         return categoryService.updateOne(id,updatedCategory);
     }
