@@ -1,6 +1,6 @@
 package com.rest_api.fs14backend.service;
 
-import com.rest_api.fs14backend.dto.AuthRequest;
+import com.rest_api.fs14backend.dto.AuthRequestDto;
 import com.rest_api.fs14backend.entity.User;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public interface UserService {
 
     public User signup(User user);
 
-    public String login(AuthRequest authRequest);
+    public String login(AuthRequestDto authRequestDto);
 
     public User getUserById(UUID id);
 }

@@ -23,9 +23,9 @@ public class Book {
     private String description;
     @Column
     private String isbn;
-    @OneToOne
+    @ManyToOne
     private Author author;
-    @OneToOne
+    @ManyToOne
     private Category category;
     @Column(nullable = false)
     private Date publishedDate;
