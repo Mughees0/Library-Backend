@@ -18,12 +18,14 @@ public class User {
     @UuidGenerator
     private UUID id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
     enum Role {
